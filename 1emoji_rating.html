@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smiley Face Rating Scale</title>
+    <style>
+        .rating {
+            display: flex;
+            justify-content: center;
+            margin: 20px;
+        }
+        .rating span {
+            font-size: 3rem;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+        .rating span:hover {
+            transform: scale(1.2);
+        }
+        .selected {
+            border: 2px solid #ff9900;
+            padding: 5px;
+            border-radius: 50%;
+        }
+        /* Apply specific colors to emojis */
+        #rating-1, #rating-5 {
+            color: red; /* Frustrated emojis */
+        }
+        #rating-2 {
+            color: blue; /* Confused emoji */
+        }
+        #rating-3 {
+            color: orange; /* Concerned emoji */
+        }
+        #rating-4 {
+            color: green; /* Optimistic emoji */
+        }
+    </style>
+</head>
+<body>
+
+<h3>Please rate your experience:</h3>
+<div class="rating">
+    <span onclick="selectRating('Frustrated')" id="rating-1">😡</span>
+    <span onclick="selectRating('Suprised')" id="rating-2">😲</span>
+    <span onclick="selectRating('Confused')" id="rating-3">🤔</span>
+    <span onclick="selectRating('Concerned')" id="rating-4">😟</span>
+    <span onclick="selectRating('Optimistic')" id="rating-5">🙂</span>
+</div>
+
+<p id="selected-rating"></p>
+
+<script>
+    function selectRating(rating) {
+        // Remove selected class from all elements
+        const ratings = document.querySelectorAll('.rating span');
+        ratings.forEach((span) => span.classList.remove('selected'));
+
+        // Add selected class to the clicked emoji
+        const selectedEmoji = document.querySelector(`[onclick="selectRating('${rating}')"]`);
+        selectedEmoji.classList.add('selected');
+
+        // Display selected rating
+        document.getElementById('selected-rating').innerText = "You selected: " + rating;
+    }
+</script>
+
+</body>
+</html>
